@@ -10,7 +10,7 @@ var UserInfo = require("./models/user_info");
 var AdminInfo = require("./models/admin_info");
 
 // mongoose.connect("mongodb+srv://werp:976jQJCeP4bU4ub2@werpindia-9qwtj.mongodb.net/test?retryWrites=true", {
-    mongoose.connect("mongodb://localhost/werp_v1", {
+    mongoose.connect("mongodb+srv://werp:976jQJCeP4bU4ub2@werpindia-9qwtj.mongodb.net/test?retryWrites=true", {
   useNewUrlParser: true
 });
 app.use(bodyParser.urlencoded({
