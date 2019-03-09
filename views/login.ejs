@@ -1,5 +1,5 @@
 <% include header %>
-
+<!-- 
 <div class="container">
   <h1>Login:</h1>
   <form action="/login" method="POST">
@@ -19,7 +19,42 @@
   </form>
 
 
+</div> -->
+
+<div class="row">
+  <div class="col-md-8" style="padding-right:0;">
+    <img src="https://images.pexels.com/photos/1181352/pexels-photo-1181352.jpeg?cs=tinysrgb&dpr=2&h=650&w=940" width="100%" style="height: 100vh;" alt="">
 </div>
+  <div class="col-md-4" style="background: #fff;">
+  <div class="form" style="margin-top: 22vh">
+      <div class="col-md-12">
+    <h2 style="font-weight: 700;">Login</h2>
+        <br>
+      </div>			
+        <form action="/login" method="POST" class="col-md-12">
+      <div class="form-group">
+        <label for="exampleInputEmail1">Email address</label>
+        <input type="name" class="form-control" id="exampleInputEmail1" name="username" value='' aria-describedby="emailHelp" placeholder="Enter email">
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1">Password</label>
+        <input type="password" class="form-control" id="exampleInputPassword1" name="password" value='' placeholder="Password">
+      </div>
+      <div>
+        <a href="/register">Already registered? Login here</a>
+      </div>
+      <br>
+      <div class="">
+      <button type="submit" class="btn btn-outline-primary col-lg-4">Submit</button>
+
+      </div>				
+      </form>
+    </div>
+
+  
+      </div>
+     
+</div>`
 
 
 <%include footer%>
