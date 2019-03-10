@@ -8,6 +8,7 @@ var User = require("./models/user");
 var Admin = require("./models/admin")
 var UserInfo = require("./models/user_info");
 var AdminInfo = require("./models/admin_info");
+var AdminTask=require('./models/admin_task');
 
 // mongoose.connect("mongodb+srv://werp:976jQJCeP4bU4ub2@werpindia-9qwtj.mongodb.net/test?retryWrites=true", {
     mongoose.connect("mongodb://localhost/werp_v1", {
@@ -135,8 +136,97 @@ app.post("/admins/new",function(req,res){
 });
 
 app.get("/admin/adiiufbibfyyagygdsigf78767iuyfuiauiufu776f9789ds7fhhuhsh", isLoggedIn, function(req,res){
-  res.send("Admin page goes here");
+  // console.log(req.user);
+  // console.log(res);
+  User.find({}).then(data=>{
+    console.log(data);
+    
+    res.render("admin_task.ejs",{data:data});
+  })
 });
+
+
+app.get('/intern/dashboard',(req,res)=>{
+  console.log(req.user);
+  
+  AdminTask.find({userid:req.user._id}).then(data=>{
+    // console.log(data);
+    
+    res.render('internwork.ejs',{data:data})
+  })
+  
+      
+});
+
+app.post('/taskassigned',isLoggedIn,function(req,res){
+  // console.log(req);
+  var newTask={
+    taskname:req.body.taskname,
+    description:req.body.description,
+    teamleadname:req.body.teamleadname,
+    id:req.user._id,
+    userid:req.body.userid
+
+  }
+  console.log("saving");
+  
+  AdminTask.create(newTask,(err,data)=>{
+    if(err){
+      console.log(err);
+    }else{
+      console.log("taskassigned");
+    }
+    res.redirect('/showtasks');
+    
+  });
+});
+//shows admin tasks which admin created
+app.get("/showtasks",isLoggedIn,(req,res)=>{
+  // console.log(req);
+  AdminTask.find({id:req.user._id}).then(data=>{
+    // console.log(data.length);
+    res.render("showadmintasks.ejs",{data :data});
+  });
+});
+
+//edit the admin tasks
+
+app.get('/editadmintasks/:id',(req,res)=>{
+  AdminTask.findOne({
+    _id:req.params.id
+  }).then(data=>{
+    if(data.id!=req.user.id){
+      res.redirect('/showtasks');
+    }else{
+      // console.log(data);
+      
+      res.render('editadmintasks.ejs',{data:data});
+    }
+  })
+});
+
+app.post('/editadmintasks/:id', (req,res)=>{
+  // console.log(req.body);
+  var editTask={
+    taskname:req.body.taskname,
+    description:req.body.description,
+    teamleadname:req.body.teamleadname,
+  }
+  // console.log(editTask)
+  AdminTask.updateOne({_id: req.params.id}, editTask, (err, updated) => {
+    if(err) throw err;
+    return res.redirect('/showtasks');
+  });
+});
+
+//delete the assigned tasks
+app.get("/deleteadmintask/:id",(req,res)=>{
+  AdminTask.deleteOne({_id:req.params.id}).then(()=>{
+    res.redirect("/showtasks");
+  })
+});
+
+//show admin tasks to interns
 
 
 //AuTH routes
@@ -187,7 +277,7 @@ app.get("/login", function (req, res) {
 });
 
 app.post("/login", passport.authenticate('user-local', {
-  successRedirect: "/",
+  successRedirect: "/intern/dashboard",
   failureRedirect: "/login"
 }), function (req, res) {
   res.send("Login logic happes here");
@@ -210,6 +300,10 @@ app.get("/logout", function (req, res) {
   req.logout();
   res.redirect("/");
 });
+
+
+
+
 
 function isLoggedIn(req, res, next) {
   if (req.isAuthenticated()) {

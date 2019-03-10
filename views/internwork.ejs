@@ -1,0 +1,27 @@
+<% include header %>
+
+<div class="container">
+<table class="table">
+        <thead>
+          <tr>
+              <th scope="col">#</th>
+              <th scope="col">Task Name</th>
+              <th scope="col">Task Lead</th>
+              <th scope="col">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+            <%for(var i=0;i<data.length;i++){%>
+                <tr>
+                    <th scope="row"><%=i+1%></th>
+                    <td><%=data[i].taskname%></td>
+                    <td><%=data[i].teamleadname%></td>
+                    <td><%=data[i].description%></td>
+                  </tr>
+            <%}%> 
+        </tbody>
+      </table>
+
+    </div>
+
+<% include footer %>
