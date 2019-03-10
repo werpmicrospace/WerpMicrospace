@@ -7,7 +7,6 @@
           <tr>
             <th scope="col">#</th>
             <th scope="col">Task Name</th>
-            <th scope="col">Task Lead</th>
             <th scope="col">Description</th>
             <th scope="col">Intern</th>
             <th scope="col">Edit</th>
@@ -20,7 +19,6 @@
         <tr>
             <th scope="row"><%=i+1%></th>
             <td><%=data[i].taskname%></td>
-            <td><%=data[i].teamleadname%></td>
             <td><%=data[i].description%></td>
             <td><%=data[i].userid%></td>
             <td><a href="/editadmintasks/<%=data[i]._id%>"><button>Edit</button></td>

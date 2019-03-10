@@ -11,7 +11,9 @@ var AdminInfo = require("./models/admin_info");
 var AdminTask=require('./models/admin_task');
 
 // mongoose.connect("mongodb+srv://werp:976jQJCeP4bU4ub2@werpindia-9qwtj.mongodb.net/test?retryWrites=true", {
-    mongoose.connect("mongodb+srv://werp:976jQJCeP4bU4ub2@werpindia-9qwtj.mongodb.net/test?retryWrites=true", {
+    // mongoose.connect("mongodb+srv://werp:976jQJCeP4bU4ub2@werpindia-9qwtj.mongodb.net/test?retryWrites=true", {
+    mongoose.connect("mongodb://localhost:27017/test", {
+
   useNewUrlParser: true
 });
 app.use(bodyParser.urlencoded({
@@ -146,7 +148,7 @@ app.get("/admin/adiiufbibfyyagygdsigf78767iuyfuiauiufu776f9789ds7fhhuhsh", isLog
 });
 
 
-app.get('/intern/dashboard',(req,res)=>{
+app.get('/intern/dashboard',isLoggedIn,(req,res)=>{
   console.log(req.user);
   
   AdminTask.find({userid:req.user._id}).then(data=>{
@@ -191,7 +193,7 @@ app.get("/showtasks",isLoggedIn,(req,res)=>{
 
 //edit the admin tasks
 
-app.get('/editadmintasks/:id',(req,res)=>{
+app.get('/editadmintasks/:id',isLoggedIn,(req,res)=>{
   AdminTask.findOne({
     _id:req.params.id
   }).then(data=>{
@@ -205,7 +207,7 @@ app.get('/editadmintasks/:id',(req,res)=>{
   })
 });
 
-app.post('/editadmintasks/:id', (req,res)=>{
+app.post('/editadmintasks/:id',isLoggedIn, (req,res)=>{
   // console.log(req.body);
   var editTask={
     taskname:req.body.taskname,
@@ -220,7 +222,7 @@ app.post('/editadmintasks/:id', (req,res)=>{
 });
 
 //delete the assigned tasks
-app.get("/deleteadmintask/:id",(req,res)=>{
+app.get("/deleteadmintask/:id",isLoggedIn,(req,res)=>{
   AdminTask.deleteOne({_id:req.params.id}).then(()=>{
     res.redirect("/showtasks");
   })
