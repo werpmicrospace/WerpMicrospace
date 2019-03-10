@@ -11,7 +11,7 @@ var AdminInfo = require("./models/admin_info");
 var AdminTask=require('./models/admin_task');
 
 // mongoose.connect("mongodb+srv://werp:976jQJCeP4bU4ub2@werpindia-9qwtj.mongodb.net/test?retryWrites=true", {
-    mongoose.connect("mongodb://localhost/werp_v1", {
+    mongoose.connect("mongodb+srv://werp:976jQJCeP4bU4ub2@werpindia-9qwtj.mongodb.net/test?retryWrites=true", {
   useNewUrlParser: true
 });
 app.use(bodyParser.urlencoded({
@@ -312,6 +312,6 @@ function isLoggedIn(req, res, next) {
   res.redirect("/login");
 }
 
-app.listen(3000, function () {
+app.listen(process.env.port||3000, function () {
   console.log("App is running");
 });
