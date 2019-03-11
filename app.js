@@ -9,7 +9,7 @@ var Admin = require("./models/admin")
 var UserInfo = require("./models/user_info");
 var AdminInfo = require("./models/admin_info");
 var AdminTask=require('./models/admin_task');
-
+var admin=require('./routes/admin');
 // mongoose.connect("mongodb+srv://werp:976jQJCeP4bU4ub2@werpindia-9qwtj.mongodb.net/test?retryWrites=true", {
     // mongoose.connect("mongodb+srv://werp:976jQJCeP4bU4ub2@werpindia-9qwtj.mongodb.net/test?retryWrites=true", {
     mongoose.connect("mongodb://localhost:27017/test", {
@@ -128,105 +128,14 @@ app.post("/admins/new",function(req,res){
     var TeamName = req.body.team;
     var newAdmin={name : Name, email:Email, password:Password, team:TeamName};
     AdminInfo.create(newAdmin, function(err,intern){
-        if(err){
-            consolelog(err);
-        } else{
-            console.log("new admin added");
-        }
+      if(err){
+        consolelog(err);
+    } else{
+        console.log("new admin added");
+    }
     })
     res.redirect("/");
-});
-
-app.get("/admin/adiiufbibfyyagygdsigf78767iuyfuiauiufu776f9789ds7fhhuhsh", isLoggedIn, function(req,res){
-  // console.log(req.user);
-  // console.log(res);
-  User.find({}).then(data=>{
-    console.log(data);
-    
-    res.render("admin_task.ejs",{data:data});
-  })
-});
-
-
-app.get('/intern/dashboard',isLoggedIn,(req,res)=>{
-  console.log(req.user);
-  
-  AdminTask.find({userid:req.user._id}).then(data=>{
-    // console.log(data);
-    
-    res.render('internwork.ejs',{data:data})
-  })
-  
-      
-});
-
-app.post('/taskassigned',isLoggedIn,function(req,res){
-  // console.log(req);
-  var newTask={
-    taskname:req.body.taskname,
-    description:req.body.description,
-    teamleadname:req.body.teamleadname,
-    id:req.user._id,
-    userid:req.body.userid
-
-  }
-  console.log("saving");
-  
-  AdminTask.create(newTask,(err,data)=>{
-    if(err){
-      console.log(err);
-    }else{
-      console.log("taskassigned");
-    }
-    res.redirect('/showtasks');
-    
-  });
-});
-//shows admin tasks which admin created
-app.get("/showtasks",isLoggedIn,(req,res)=>{
-  // console.log(req);
-  AdminTask.find({id:req.user._id}).then(data=>{
-    // console.log(data.length);
-    res.render("showadmintasks.ejs",{data :data});
-  });
-});
-
-//edit the admin tasks
-
-app.get('/editadmintasks/:id',isLoggedIn,(req,res)=>{
-  AdminTask.findOne({
-    _id:req.params.id
-  }).then(data=>{
-    if(data.id!=req.user.id){
-      res.redirect('/showtasks');
-    }else{
-      // console.log(data);
-      
-      res.render('editadmintasks.ejs',{data:data});
-    }
-  })
-});
-
-app.post('/editadmintasks/:id',isLoggedIn, (req,res)=>{
-  // console.log(req.body);
-  var editTask={
-    taskname:req.body.taskname,
-    description:req.body.description,
-    teamleadname:req.body.teamleadname,
-  }
-  // console.log(editTask)
-  AdminTask.updateOne({_id: req.params.id}, editTask, (err, updated) => {
-    if(err) throw err;
-    return res.redirect('/showtasks');
-  });
-});
-
-//delete the assigned tasks
-app.get("/deleteadmintask/:id",isLoggedIn,(req,res)=>{
-  AdminTask.deleteOne({_id:req.params.id}).then(()=>{
-    res.redirect("/showtasks");
-  })
-});
+    });
 
 //show admin tasks to interns
 
@@ -299,6 +208,7 @@ app.post("/admin/login", passport.authenticate('admin-local', {
 
 //logout routes
 app.get("/logout", function (req, res) {
+
   req.logout();
   res.redirect("/");
 });
@@ -313,6 +223,10 @@ function isLoggedIn(req, res, next) {
   }
   res.redirect("/login");
 }
+
+
+
+app.use('/',admin);
 
 app.listen(process.env.PORT||3000, function () {
   console.log("App is running");
