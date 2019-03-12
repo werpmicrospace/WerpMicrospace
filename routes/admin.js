@@ -10,7 +10,7 @@ var AdminTask = require('../models/admin_task');
 
 
 
-router.get("/admin/adiiufbibfyyagygdsigf78767iuyfuiauiufu776f9789ds7fhhuhsh", isLoggedIn, function(req,res){
+router.get("/showtasks", isLoggedIn, function(req,res){
 // console.log(req.user);
 // console.log(res);
 User.find({}).then(data=>{
@@ -56,7 +56,7 @@ res.redirect('/showtasks');
 });
 });
 //shows admin tasks which admin created
-router.get("/showtasks",isLoggedIn,(req,res)=>{
+router.get("/admin/adiiufbibfyyagygdsigf78767iuyfuiauiufu776f9789ds7fhhuhsh",isLoggedIn,(req,res)=>{
 // console.log(req);
 AdminTask.find({id:req.user._id}).then(data=>{
 // console.log(data.length);
@@ -75,7 +75,7 @@ res.redirect('/showtasks');
 }else{
 // console.log(data);
 
-res.render('editadmintasks.ejs',{data:data});
+res.render('admintasks/editadmintasks.ejs',{data:data});
 }
 })
 });
