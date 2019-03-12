@@ -10,8 +10,8 @@ var UserInfo = require("./models/user_info");
 var AdminInfo = require("./models/admin_info");
 var AdminTask=require('./models/admin_task');
 var admin=require('./routes/admin');
-mongoose.connect("mongodb+srv://werp:976jQJCeP4bU4ub2@werpindia-9qwtj.mongodb.net/test?retryWrites=true", {
-    //mongoose.connect("mongodb://localhost:27017/test", {
+// mongoose.connect("mongodb+srv://werp:976jQJCeP4bU4ub2@werpindia-9qwtj.mongodb.net/test?retryWrites=true", {
+    mongoose.connect("mongodb://localhost:/werp_v1", {
 
   useNewUrlParser: true
 });
@@ -90,7 +90,7 @@ app.use(function (req, res, next) {
 
 
 app.get("/", function (req, res) {
-  res.render("landing.ejs");
+  res.render("login.ejs");
 });
 
 
