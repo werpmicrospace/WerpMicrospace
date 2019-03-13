@@ -1,0 +1,18 @@
+<% include ../header %>
+<div class="container">
+    <h2><%=task.taskname%></h2>
+    <hr>
+    <h4>Enter your comment</h4>
+    <form action="/admin/task/<%=task._id%>/comment" method="POST">
+
+        <div class="form-control">
+            <label for="comment">Comment:</label>
+            <input type="text" name="comment" style="width:80%;">
+        </div>
+        <div class="form-control">
+            <input type="submit">
+        </div>
+    </form>
+    
+</div>
+<% include ../footer %>

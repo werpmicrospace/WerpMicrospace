@@ -1,0 +1,31 @@
+<% include ../header %>
+<div class="container">
+    <h3>Task : <%= task.taskname %></h3>
+    <hr>
+    <div class="card bg-white p-3">
+        <p><%= task.details %></p>
+    </div>
+    <div class="card bg-light p-3">
+        <% if(currentUser.id==task.id){ %>
+            <a href="/admin/task/<%= task._id %>/comment" style="text-align:right;">Add a comment</a>
+        <%}%>
+        <h5>Comments:</h5>
+        <% task.comments.forEach(function(comm){ %>
+            <div class="card">
+                <div class="row">
+                    <div class="col-md-10">
+                        <h5><%= task.teamleadname %>:</h5>
+                        <p><%= comm.text%></p>
+                    </div>
+                    <div class="col-md-2">
+                        <%if(currentUser.id==task.id){%>
+                            <a href="/comment/<%= comm._id %>/<%= task._id %>/delete" style="text-align:right; padding-left: 50px ">Delete</a>
+                        <%}%>
+                    </div>
+                </div>
+            </div>
+        <% }) %>
+    </div>
+</div>
+
+<% include ../footer %>

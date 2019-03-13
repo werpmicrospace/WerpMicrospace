@@ -176,7 +176,7 @@ app.post("/admin/register", function (req, res) {
         return res.render("adminRegister.ejs");
       }
       passport.authenticate("admin-local")(req, res, function () {
-        res.redirect("/");
+        res.redirect("/admin/adiiufbibfyyagygdsigf78767iuyfuiauiufu776f9789ds7fhhuhsh");
       });
     });
   });

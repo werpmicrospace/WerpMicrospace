@@ -18,7 +18,7 @@
     <%for(var i=0;i<data.length;i++){%>
         <tr>
             <th scope="row"><%=i+1%></th>
-            <td><%=data[i].taskname%></td>
+            <td><a href="/admin/task/<%=data[i]._id%>"><%=data[i].taskname%></a></td>
             <td><%=data[i].description%></td>
             <td><%=data[i].userid%></td>
             <td><a href="/editadmintasks/<%=data[i]._id%>"><button>Edit</button></td>
@@ -28,10 +28,7 @@
         
         </tbody>
       </table>
-      
-    
-
-
+    <a href="/admin/adiiufbibfyyagygdsigf78767iuyfuiauiufu776f9789ds7fhhuhsh" class="btn btn-success">New Task</a>
 
 </div>
 
