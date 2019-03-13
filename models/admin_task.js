@@ -9,6 +9,9 @@ var adminTaskSchema=new schema({
     description:{
         type:String,
     },
+    details:{
+        type:String,
+    },
     teamleadname:{
         type:String,
     },
@@ -18,6 +21,10 @@ var adminTaskSchema=new schema({
     userid:{
         type:mongoose.Schema.Types.ObjectId,
     },
+    comments: [{
+        type : mongoose.Schema.Types.ObjectId,
+        ref : "Comment"
+    }]
     
 
 });
