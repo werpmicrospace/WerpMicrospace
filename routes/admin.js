@@ -11,11 +11,10 @@ var Comment = require('../models/comment');
  
 
 router.get("/showtasks", isLoggedIn, function(req,res){
-// console.log(req.user);
+// console.log(req);
 // console.log(res);
-AdminTask.find({}).then(data=>{
+AdminTask.find({admin:req.user._id}).then(data=>{
 // console.log(data);
-
     res.render("admintasks/showadmintasks.ejs",{data:data});
 })
 });
@@ -24,27 +23,59 @@ AdminTask.find({}).then(data=>{
 router.get('/intern/dashboard',isLoggedIn,(req,res)=>{
 // console.log(req.user);
 
-AdminTask.find({userid:req.user._id}).then(data=>{
-// console.log(data);
+AdminTask.find({users:req.user._id}).then(data=>{
+// console.log(data[1]._id);
 
 res.render('internwork/internwork.ejs',{data:data})
-})
+});
 
 
 });
 
+router.get('/intern/edit/:id',(req,res)=>{
+    // console.log(req.body);
+    // console.log(req.params);
+    // console.log(req.user);
+    
+    
+    res.render('internwork/intern_edit.ejs',{data:req.params.id});
+});
+
+router.post('/intern/edit/:id',(req,res)=>{
+    // console.log(req);
+    
+    var interndata={
+        status:req.body.status,
+        date:req.body.date,
+        comment:req.body.comment
+    }
+    
+    AdminTask.updateOne({_id:req.params.id},interndata,(err,updated)=>{
+        if(err){
+            console.log(err);
+            
+        }else{
+            res.redirect('/intern/dashboard')
+        }
+    })
+});
+
+
 router.post('/taskassigned',isLoggedIn,function(req,res){
+    // console.log("after saving");
+    
 // console.log(req);
 var newTask={
 taskname:req.body.taskname,
 description:req.body.description,
 details:req.body.details,
+admin:req.user._id,
 teamleadname:req.body.teamleadname,
-id:req.user._id,
-userid:req.body.userid
+users:req.body.userid,
+intername:req.user.username
 
 }
-console.log("saving");
+// console.log("saving");
 
 AdminTask.create(newTask,(err,data)=>{
 if(err){
@@ -60,7 +91,9 @@ res.redirect('/showtasks');
 router.get("/admin/adiiufbibfyyagygdsigf78767iuyfuiauiufu776f9789ds7fhhuhsh",isLoggedIn,(req,res)=>{
 // console.log(req);
 User.find({}).then(data=>{
-console.log(data);
+    console.log("adding tasks");
+    
+// console.log(data);
 res.render("admintasks/admin_task.ejs",{data :data});
 });
 });
@@ -101,6 +134,7 @@ AdminTask.deleteOne({_id:req.params.id}).then(()=>{
 res.redirect("/showtasks");
 })
 });
+
 
 // router.get("/admin/task/:id",isLoggedIn,(req,res)=>{
 //     var id=req.params.id;
