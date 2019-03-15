@@ -8,6 +8,12 @@
               <th scope="col">Task Name</th>
               <th scope="col">Task Lead</th>
               <th scope="col">Description</th>
+              <th scope="col">Status</th>
+              <th scope="col">Date</th>
+              <th scope="col">Comment</th>
+
+              <th scope="col">Edit</th>
+
           </tr>
         </thead>
         <tbody>
@@ -17,6 +23,13 @@
                     <td><a href="/admin/task/<%=data[i]._id%>"><%=data[i].taskname%></a></td>
                     <td><%=data[i].teamleadname%></td>
                     <td><%=data[i].description%></td>
+                    <td><%=data[i].status%></td>
+                    <td><%=data[i].date%></td>
+                    <td><%=data[i].comment%></td>
+
+            <td><a href="/intern/edit/<%=data[i]._id%>"><button>Edit</button></td>
+
+
                   </tr>
             <%}%> 
         </tbody>

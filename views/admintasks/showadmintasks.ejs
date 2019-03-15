@@ -8,7 +8,10 @@
             <th scope="col">#</th>
             <th scope="col">Task Name</th>
             <th scope="col">Description</th>
-            <th scope="col">Intern</th>
+            <th scope="col">Intern Name</th>
+            <th scope="col">Status</th>
+            <th scope="col">Date</th>
+            <th scope="col">Comment</th>
             <th scope="col">Edit</th>
             <th scope="col">Delete</th>
           </tr>
@@ -20,7 +23,11 @@
             <th scope="row"><%=i+1%></th>
             <td><a href="/admin/task/<%=data[i]._id%>"><%=data[i].taskname%></a></td>
             <td><%=data[i].description%></td>
-            <td><%=data[i].userid%></td>
+            <td><%=data[i].intername%></td>
+            <td><%=data[i].status%></td>
+            <td><%=data[i].date%></td>
+            <td><%=data[i].comment%></td>
+
             <td><a href="/editadmintasks/<%=data[i]._id%>"><button>Edit</button></td>
             <td><a href="/deleteadmintask/<%=data[i]._id%>"><button>Delete</button></td>
           </tr>
