@@ -200,7 +200,7 @@ app.get("/admin/login", function (req, res) {
   });
 
 app.post("/admin/login", passport.authenticate('admin-local', {
-  successRedirect: "/admin/adiiufbibfyyagygdsigf78767iuyfuiauiufu776f9789ds7fhhuhsh",
+  successRedirect: "/showtasks",
   failureRedirect: "/admin/login"
 }), function (req, res) {
   res.send("Login logic happes here");

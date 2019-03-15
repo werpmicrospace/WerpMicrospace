@@ -13,16 +13,16 @@ var Comment = require('../models/comment');
 router.get("/showtasks", isLoggedIn, function(req,res){
 // console.log(req.user);
 // console.log(res);
-User.find({}).then(data=>{
-console.log(data);
+AdminTask.find({}).then(data=>{
+// console.log(data);
 
-    res.render("admintasks/admin_task.ejs",{data:data});
+    res.render("admintasks/showadmintasks.ejs",{data:data});
 })
 });
 
 
 router.get('/intern/dashboard',isLoggedIn,(req,res)=>{
-console.log(req.user);
+// console.log(req.user);
 
 AdminTask.find({userid:req.user._id}).then(data=>{
 // console.log(data);
@@ -59,9 +59,9 @@ res.redirect('/showtasks');
 //shows admin tasks which admin created
 router.get("/admin/adiiufbibfyyagygdsigf78767iuyfuiauiufu776f9789ds7fhhuhsh",isLoggedIn,(req,res)=>{
 // console.log(req);
-AdminTask.find({id:req.user._id}).then(data=>{
-// console.log(data.length);
-res.render("admintasks/showadmintasks.ejs",{data :data});
+User.find({}).then(data=>{
+console.log(data);
+res.render("admintasks/admin_task.ejs",{data :data});
 });
 });
 
@@ -102,50 +102,50 @@ res.redirect("/showtasks");
 })
 });
 
-router.get("/admin/task/:id",isLoggedIn,(req,res)=>{
-    var id=req.params.id;
-    AdminTask.findById(id).populate("comments").exec(function(err,task){
-        if(err) console.log(err);
-        else{
-            res.render('admintasks/task_details.ejs',{task:task});
-        }
-    })
-});
+// router.get("/admin/task/:id",isLoggedIn,(req,res)=>{
+//     var id=req.params.id;
+//     AdminTask.findById(id).populate("comments").exec(function(err,task){
+//         if(err) console.log(err);
+//         else{
+//             res.render('admintasks/task_details.ejs',{task:task});
+//         }
+//     })
+// });
 
-router.get("/admin/task/:id/comment",isLoggedIn, function(req,res){
-    AdminTask.findById(req.params.id,function(err,task){
-        if(err) console.log(err);
-        else{
-            res.render('admintasks/new_comment.ejs',{task:task});
-        }
-    })
-});
+// router.get("/admin/task/:id/comment",isLoggedIn, function(req,res){
+//     AdminTask.findById(req.params.id,function(err,task){
+//         if(err) console.log(err);
+//         else{
+//             res.render('admintasks/new_comment.ejs',{task:task});
+//         }
+//     })
+// });
 
-router.post("/admin/task/:id/comment",isLoggedIn,function(req,res){
-    AdminTask.findById(req.params.id,function(err,task){
-        if(err) console.log(err);
-        else{
-            console.log(req.body.comment);
-            var newComment={text:req.body.comment};
-            Comment.create(newComment,function(err,comment){
-                if(err) console.log(err);
-                else{
-                    task.comments.push(comment);
-                    task.save();
-                    res.redirect("/admin/task/"+req.params.id);
-                }
-            })
-        }
-    })
-});
+// router.post("/admin/task/:id/comment",isLoggedIn,function(req,res){
+//     AdminTask.findById(req.params.id,function(err,task){
+//         if(err) console.log(err);
+//         else{
+//             console.log(req.body.comment);
+//             var newComment={text:req.body.comment};
+//             Comment.create(newComment,function(err,comment){
+//                 if(err) console.log(err);
+//                 else{
+//                     task.comments.push(comment);
+//                     task.save();
+//                     res.redirect("/admin/task/"+req.params.id);
+//                 }
+//             })
+//         }
+//     })
+// });
 
-router.get("/comment/:id/:taskid/delete",function(req,res){
-    var taskid=req.params.taskid;
-    Comment.deleteOne({_id:req.params.id},function(err,comment){
-        if(err) console.log(err);
-        else res.redirect("/admin/task/"+taskid);
-    });
-});
+// router.get("/comment/:id/:taskid/delete",function(req,res){
+//     var taskid=req.params.taskid;
+//     Comment.deleteOne({_id:req.params.id},function(err,comment){
+//         if(err) console.log(err);
+//         else res.redirect("/admin/task/"+taskid);
+//     });
+// });
 
 function isLoggedIn(req, res, next) {
     if (req.isAuthenticated()) {

@@ -15,16 +15,11 @@ var adminTaskSchema=new schema({
     teamleadname:{
         type:String,
     },
-    id:{
-        type:mongoose.Schema.Types.ObjectId,
-    },
+   
     userid:{
         type:mongoose.Schema.Types.ObjectId,
-    },
-    comments: [{
-        type : mongoose.Schema.Types.ObjectId,
-        ref : "Comment"
-    }]
+    }
+    
     
 
 });
