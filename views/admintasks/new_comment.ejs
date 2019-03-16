@@ -4,6 +4,10 @@
     <hr>
     <h4>Enter your comment</h4>
     <form action="/admin/task/<%=task._id%>/comment" method="POST">
+        <div class="form-control">
+            <label for="user">Author:</label>
+            <input type="text" name="author" style="width:80%;">
+        </div>
 
         <div class="form-control">
             <label for="comment">Comment:</label>

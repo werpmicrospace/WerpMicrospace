@@ -8,12 +8,9 @@
               <th scope="col">Task Name</th>
               <th scope="col">Task Lead</th>
               <th scope="col">Description</th>
-              <th scope="col">Status</th>
               <th scope="col">Date</th>
-              <th scope="col">Comment</th>
-
-              <th scope="col">Edit</th>
-
+              <th scope="col">Current Status</th>
+              <th scope="col">Edit Status</th>
           </tr>
         </thead>
         <tbody>
@@ -23,13 +20,19 @@
                     <td><a href="/admin/task/<%=data[i]._id%>"><%=data[i].taskname%></a></td>
                     <td><%=data[i].teamleadname%></td>
                     <td><%=data[i].description%></td>
-                    <td><%=data[i].status%></td>
                     <td><%=data[i].date%></td>
-                    <td><%=data[i].comment%></td>
-
-            <td><a href="/intern/edit/<%=data[i]._id%>"><button>Edit</button></td>
-
-
+                    <td><%=data[i].status%></td>
+                    <td>
+                      <form action="/status/<%=data[i]._id%>" method="POST">
+                        <select name="status" id="">
+                          <option value="On it">On it</option>
+                          <option value="50% complete">50% complete</option>
+                          <option value="75% complete">75% complete</option>
+                          <option value="Done">Done</option>
+                        </select>
+                        <input type="submit" >
+                      </form>
+                    </td>
                   </tr>
             <%}%> 
         </tbody>

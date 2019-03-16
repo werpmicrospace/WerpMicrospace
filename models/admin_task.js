@@ -15,27 +15,18 @@ var adminTaskSchema=new schema({
     teamleadname:{
         type:String,
     },
-    status:{
-        type:String,
+    id:{
+        type:mongoose.Schema.Types.ObjectId,
     },
-    date:{
-        type:String,
+    userid:{
+        type:mongoose.Schema.Types.ObjectId,
     },
-    admin:{
-        type:String,
-    },
-    users:{
-        type:String,
-        
-    },
-    comment:{
-        type:String,
-    },
-    intername:{
-        type:String,
-      
-    }
-    
+    comments: [{
+        type : mongoose.Schema.Types.ObjectId,
+        ref : "Comment"
+    }],
+    status : String,
+    date : String
     
 
 });

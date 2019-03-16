@@ -1,42 +1,43 @@
 <% include ../header %>
 <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+              <table class="table">
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Task Name</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Intern</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Edit</th>
+                    <th scope="col">Delete</th>
+                  </tr>
+                </thead>
+                
+                <tbody>
+            <%for(var i=0;i<data.length;i++){%>
+                <tr>
+                    <th scope="row"><%=i+1%></th>
+                    <td><a href="/admin/task/<%=data[i]._id%>"><%=data[i].taskname%></a></td>
+                    <td><%=data[i].description%></td>
+                    <td><%=data[i].userid%></td>
+                    <td><%=data[i].date%></td>
+                    <td><%=data[i].status%></td>
+                    <td><a href="/editadmintasks/<%=data[i]._id%>"><button>Edit</button></td>
+                    <td><a href="/deleteadmintask/<%=data[i]._id%>"><button>Delete</button></td>
+                  </tr>
+            <%}%> 
+                
+                </tbody>
+              </table>
+            <a href="/admin/adiiufbibfyyagygdsigf78767iuyfuiauiufu776f9789ds7fhhuhsh" class="btn btn-success">New Task</a>
 
-<div class="container" style="padding-top:1%">
-     <table class="table">
-        <thead class="thead-dark">
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Task Name</th>
-            <th scope="col">Description</th>
-            <th scope="col">Intern Name</th>
-            <th scope="col">Status</th>
-            <th scope="col">Date</th>
-            <th scope="col">Comment</th>
-            <th scope="col">Edit</th>
-            <th scope="col">Delete</th>
-          </tr>
-        </thead>
-        
-        <tbody>
-    <%for(var i=0;i<data.length;i++){%>
-        <tr>
-            <th scope="row"><%=i+1%></th>
-            <td><a href="/admin/task/<%=data[i]._id%>"><%=data[i].taskname%></a></td>
-            <td><%=data[i].description%></td>
-            <td><%=data[i].intername%></td>
-            <td><%=data[i].status%></td>
-            <td><%=data[i].date%></td>
-            <td><%=data[i].comment%></td>
+      </div>
+    </div>
 
-            <td><a href="/editadmintasks/<%=data[i]._id%>"><button>Edit</button></td>
-            <td><a href="/deleteadmintask/<%=data[i]._id%>"><button>Delete</button></td>
-          </tr>
-    <%}%> 
-        
-        </tbody>
-      </table>
-      <a class="btn btn-success" href="/admin/adiiufbibfyyagygdsigf78767iuyfuiauiufu776f9789ds7fhhuhsh">New Task</a>
-</div>
+
 </div>
 
 
