@@ -13,7 +13,7 @@ router.get("/admin/adiiufbibfyyagygdsigf78767iuyfuiauiufu776f9789ds7fhhuhsh", is
 // console.log(req.user);
 // console.log(res);
 User.find({}).then(data=>{
-console.log(data);
+// console.log(data);
 
     res.render("admintasks/admin_task.ejs",{data:data});
 })
@@ -40,7 +40,8 @@ description:req.body.description,
 details:req.body.details,
 teamleadname:req.body.teamleadname,
 id:req.user._id,
-userid:req.body.userid
+userid:req.body.userid,
+username:req.user.username
 }
 console.log("saving");
 
@@ -106,6 +107,8 @@ router.get("/admin/task/:id",isLoggedIn,(req,res)=>{
         if(err) console.log(err);
         else{
             res.render('admintasks/task_details.ejs',{task:task});
+            console.log(task);
+            
         }
     })
 });
@@ -146,7 +149,24 @@ router.get("/comment/:id/:taskid/delete",function(req,res){
 });
 
 router.post("/status/:id",function(req,res){
-    var statusinfo={status:req.body.status};
+    var color1;
+    if(req.body.status=="Not started"){
+        color1="Orange"
+    }
+    if (req.body.status == "Completed") {
+        color1 = "Green"
+    }
+    if (req.body.status =="Blocked"){
+        color1="Red"
+    }
+    if (req.body.status == "Working on it") {
+        color1 = "yellow"
+    }
+    var statusinfo={
+        status:req.body.status,
+        color:color1,
+        date:req.body.dateq
+    };
     AdminTask.updateOne({_id:req.params.id},statusinfo,function(err,status){
         if(err) console.log(err);
         else{

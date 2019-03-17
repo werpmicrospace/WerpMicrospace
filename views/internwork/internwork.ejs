@@ -1,6 +1,6 @@
 <% include ../header %>
 
-<div class="container">
+<!-- <div class="container">
 <table class="table">
         <thead>
           <tr>
@@ -38,7 +38,75 @@
         </tbody>
       </table>
 
-    </div>
+    </div> -->
+<div class="container border border-warning" style="margin-top:2%;min-height: 90vh;">
+  <h2 class="text-center">Team Tasks</h2>
+  <div class="container" style="padding-top:4%">
+    <table class="table table-bordered">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Task Name</th>
+          <th scope="col">Task Lead</th>
+          <th scope="col">Description</th>
+          <th scope="col">Date</th>
+          <th scope="col">Current Status</th>
+          <th scope="col">Edit Status / Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%for(var i=0;i<data.length;i++){%>
 
+        <tr>
+          <td><a href="/admin/task/<%=data[i]._id%>"><%=data[i].taskname%></a></td>
+          <td><%=data[i].teamleadname%></td>
+          <td><%=data[i].description%></td>
+          <td><%=data[i].date%></td>
+          <td id="chgcolor" style="background-color:<%=data[i].color%>" ><%=data[i].status%></td>
+          <td>
+            <form action="/status/<%=data[i]._id%>" method="POST">
+              <input type="date" name="dateq">
+              <select name="status" id=""onclick="chgcolor(value)">
+                <option value="Not started" >Not started</option>
+                <option value="Completed">Completed</option>
+                <option value="Blocked">Blocked due to reason</option>
+                <option value="Working on it">Working on it</option>
+              </select>
+              <input type="submit">
+            </form>
+          </td>
+        </tr>
+        <%}%> 
+
+      </tbody>
+    </table>
+  </div>
+</div>
+<script>
+  
+  function asd(data){
+    console.log(data);
+    return data
+    
+  }
+  
+  function chgcolor(data){
+    if(data == "Not started"){
+    document.getElementById('chgcolor').style.backgroundColor = "Orange";
+    
+    }
+    if (data == "Completed") {
+      document.getElementById('chgcolor').style.backgroundColor = "Green";
+    }
+    if (data == "Blocked") {
+      document.getElementById('chgcolor').style.backgroundColor = "Red";
+    }
+    if (data == "Working on it") {
+      document.getElementById('chgcolor').style.backgroundColor = "Yellow";
+    }
+  
+    
+  }
+  
+</script>
 <% include ../footer %>
 

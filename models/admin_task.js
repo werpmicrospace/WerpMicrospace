@@ -25,7 +25,9 @@ var adminTaskSchema=new schema({
         type : mongoose.Schema.Types.ObjectId,
         ref : "Comment"
     }],
+    username:String,
     status : String,
+    color:String,
     date : String
     
 

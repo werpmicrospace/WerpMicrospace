@@ -1,5 +1,5 @@
 <% include ../header %>
-<div class="container">
+<!-- <div class="container">
     <div class="row">
       <div class="col-md-12">
               <table class="table">
@@ -38,8 +38,42 @@
     </div>
 
 
+</div> -->
+
+<div class="container border border-warning" style="margin-top:2%;min-height: 85vh;">
+  <h2 class="text-center" style="margin-top:2%">Team Tasks</h2>
+  <div class="container" style="padding-top:4%">
+    <table class="table table-bordered">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Task Name</th>
+          <th scope="col">Description</th>
+          <th scope="col">Intern</th>
+          <th scope="col">Date</th>
+          <th scope="col">Status</th>
+          <th scope="col">Edit</th>
+          <th scope="col">Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+            <%for(var i=0;i<data.length;i++){%>
+
+        <tr>
+          <td><a href="/admin/task/<%=data[i]._id%>"><%=data[i].taskname%></a></td>
+          <td><%=data[i].description%></td>
+          <td><%=data[i].username%></td>
+          <td><%=data[i].date%></td>
+          <td style="background-color:<%=data[i].color%>"><%=data[i].status%></td>
+          <td><a href="/editadmintasks/<%=data[i]._id%>"><button>Edit</button></td>
+          <td><a href="/deleteadmintask/<%=data[i]._id%>"><button>Delete</button></td>
+        </tr>
+            <%}%> 
+
+      </tbody>
+    </table>
+            <a href="/admin/adiiufbibfyyagygdsigf78767iuyfuiauiufu776f9789ds7fhhuhsh" class="btn btn-success">New Task</a>
+
+  </div>
 </div>
-
-
 
 <% include ../footer %>
