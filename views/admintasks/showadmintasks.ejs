@@ -1,6 +1,5 @@
 <% include ../header %>
-<!-- <div class="container">
-    <div class="row">
+    <!-- <div class="row">
       <div class="col-md-12">
               <table class="table">
                 <thead class="thead-dark">
@@ -11,6 +10,8 @@
                     <th scope="col">Intern</th>
                     <th scope="col">Date</th>
                     <th scope="col">Status</th>
+                    <th scope="col">Score</th>
+                    <th scope="col">Remarks</th>
                     <th scope="col">Edit</th>
                     <th scope="col">Delete</th>
                   </tr>
@@ -25,6 +26,8 @@
                     <td><%=data[i].userid%></td>
                     <td><%=data[i].date%></td>
                     <td><%=data[i].status%></td>
+                    <td><%=data[i].score%></td>
+                    <td><%=data[i].remarks%></td>
                     <td><a href="/editadmintasks/<%=data[i]._id%>"><button>Edit</button></td>
                     <td><a href="/deleteadmintask/<%=data[i]._id%>"><button>Delete</button></td>
                   </tr>
@@ -35,10 +38,10 @@
             <a href="/admin/adiiufbibfyyagygdsigf78767iuyfuiauiufu776f9789ds7fhhuhsh" class="btn btn-success">New Task</a>
 
       </div>
-    </div>
+    </div> -->
 
 
-</div> -->
+<!-- </div> -->
 
 <div class="container border border-warning" style="margin-top:2%;min-height: 85vh;">
   <h2 class="text-center" style="margin-top:2%">Team Tasks</h2>
@@ -51,6 +54,8 @@
           <th scope="col">Intern</th>
           <th scope="col">Date</th>
           <th scope="col">Status</th>
+          <th scope="col">Score</th>
+          <th scope="col">Remarks</th>
           <th scope="col">Edit</th>
           <th scope="col">Delete</th>
         </tr>
@@ -64,6 +69,8 @@
           <td><%=data[i].username%></td>
           <td><%=data[i].date%></td>
           <td style="background-color:<%=data[i].color%>"><%=data[i].status%></td>
+          <td><%=data[i].score%></td>
+          <td><%=data[i].remarks%></td>
           <td><a href="/editadmintasks/<%=data[i]._id%>"><button>Edit</button></td>
           <td><a href="/deleteadmintask/<%=data[i]._id%>"><button>Delete</button></td>
         </tr>

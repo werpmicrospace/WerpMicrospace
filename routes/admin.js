@@ -41,7 +41,9 @@ details:req.body.details,
 teamleadname:req.body.teamleadname,
 id:req.user._id,
 userid:req.body.userid,
-username:req.user.username
+username:req.user.username,
+score:req.body.score,
+remarks:req.body.remarks
 }
 console.log("saving");
 
