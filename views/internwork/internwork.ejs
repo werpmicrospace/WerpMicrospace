@@ -48,6 +48,8 @@
           <th scope="col">Task Name</th>
           <th scope="col">Task Lead</th>
           <th scope="col">Description</th>
+          <th scope="col">Score</th>
+          <th scope="col">Remarks</th>
           <th scope="col">Date</th>
           <th scope="col">Current Status</th>
           <th scope="col">Edit Status / Date</th>
@@ -60,6 +62,8 @@
           <td><a href="/admin/task/<%=data[i]._id%>"><%=data[i].taskname%></a></td>
           <td><%=data[i].teamleadname%></td>
           <td><%=data[i].description%></td>
+          <td><%=data[i].score%></td>
+          <td><%=data[i].remarks%></td>
           <td><%=data[i].date%></td>
           <td id="chgcolor" style="background-color:<%=data[i].color%>" ><%=data[i].status%></td>
           <td>
