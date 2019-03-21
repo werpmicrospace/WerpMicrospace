@@ -88,6 +88,8 @@ var editTask={
 taskname:req.body.taskname,
 description:req.body.description,
 teamleadname:req.body.teamleadname,
+score:req.body.score,
+remarks:req.body.remarks
 }
 // console.log(editTask)
 AdminTask.updateOne({_id: req.params.id}, editTask, (err, updated) => {
