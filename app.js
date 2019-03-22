@@ -12,7 +12,7 @@ var AdminTask=require('./models/admin_task');
 var admin=require('./routes/admin');
 
 mongoose.connect("mongodb+srv://werp:976jQJCeP4bU4ub2@werpindia-9qwtj.mongodb.net/test?retryWrites=true", {
-   //mongoose.connect("mongodb://localhost:/werp_v1", {
+  //  mongoose.connect("mongodb://localhost:/werp_v1", {
   useNewUrlParser: true
 });
 app.use(bodyParser.urlencoded({
@@ -90,7 +90,22 @@ app.use(function (req, res, next) {
 
 
 app.get("/", function (req, res) {
-  res.render("login.ejs");
+  if(req.user){
+    User.findById(req.user.id,function(err,user){
+      if(err){
+        console.log(err);
+      }
+      else if(user){
+        res.redirect("/intern/dashboard");
+      }
+      else{
+        res.redirect("/showtasks");
+      }
+    });
+  }
+  else{
+    res.render("login.ejs");
+  }
 });
 
 
@@ -183,7 +198,12 @@ app.post("/admin/register", function (req, res) {
 
 //login routes
 app.get("/login", function (req, res) {
-  res.render("login.ejs");
+  if(!currentUser){
+    res.render("login.ejs");
+  }
+  else{
+    res.redirect("/intern/dashboard");
+  }
 });
 
 app.post("/login", passport.authenticate('user-local', {
@@ -195,7 +215,12 @@ app.post("/login", passport.authenticate('user-local', {
 
 //admin login
 app.get("/admin/login", function (req, res) {
+  if(req.user){
+    res.redirect("/showtasks");
+  }
+  else{
     res.render("adminLogin.ejs");
+  }
   });
 
 app.post("/admin/login", passport.authenticate('admin-local', {
