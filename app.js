@@ -198,7 +198,7 @@ app.post("/admin/register", function (req, res) {
 
 //login routes
 app.get("/login", function (req, res) {
-  if(!currentUser){
+  if(!req.user){
     res.render("login.ejs");
   }
   else{
