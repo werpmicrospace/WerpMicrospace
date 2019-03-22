@@ -25,9 +25,8 @@ var adminTaskSchema=new schema({
         type:mongoose.Schema.Types.ObjectId,
     },
     userid:{
-        type: mongoose.Schema.Types.ObjectId,
+        type:mongoose.Schema.Types.ObjectId,
     },
-    username1:String,
     comments: [{
         type : mongoose.Schema.Types.ObjectId,
         ref : "Comment"

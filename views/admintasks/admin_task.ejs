@@ -28,7 +28,7 @@
             <label for="taskassignedto">Intern Name</label>
             <select name="userid" class="form-control">
               <%for(var i=0;i<data.length;i++){ %>
-                <option  value="<%=data[i]._id%>,<%=data[i].username%>"><%=data[i].username%></option>
+                <option  value="<%=data[i]._id%>"  ><%=data[i].username%></option>
                 <%}%>
             </select>
 
