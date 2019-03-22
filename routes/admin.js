@@ -33,21 +33,15 @@ res.render('internwork/internwork.ejs',{data:data})
 });
 
 router.post('/taskassigned',isLoggedIn,function(req,res){
-console.log(req.body.userid);
-// var name=(req.body.userid).slice((req.body.userid)).indexOf(',')
-// var name=req.body.userid;
-var name=req.body.userid.slice(25);
-var idd=req.body.userid.slice(0,24)
-
+// console.log(req);
 var newTask={
 taskname:req.body.taskname,
 description:req.body.description,
 details:req.body.details,
 teamleadname:req.body.teamleadname,
 id:req.user._id,
-userid:idd,
+userid:req.body.userid,
 username:req.user.username,
-username1:name,
 score:req.body.score,
 remarks:req.body.remarks
 }
