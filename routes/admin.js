@@ -33,7 +33,7 @@ res.render('internwork/internwork.ejs',{data:data})
 });
 
 router.post('/taskassigned',isLoggedIn,function(req,res){
-<<<<<<< HEAD
+
 // console.log(req.body.userid);
 // var name=(req.body.userid).slice((req.body.userid)).indexOf(',')
 // var name=req.body.userid;
@@ -42,9 +42,6 @@ var name=req.body.userid.slice(25);
 var idd=req.body.userid.slice(0,24)
 var formateddate=myDate.getDate()+"-"+(myDate.getMonth()+1)+"-"+myDate.getFullYear();
 
-=======
-// console.log(req);
->>>>>>> b09364d8101888fa24e687ab13e5f0285e5854fe
 var newTask={
 taskname:req.body.taskname,
 description:req.body.description,
