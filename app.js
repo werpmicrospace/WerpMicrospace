@@ -156,12 +156,16 @@ app.post("/admins/new",function(req,res){
 
 //AuTH routes
 app.get("/register", function (req, res) {
+  
   res.render("register.ejs");
 });
 
 app.post("/register", function (req, res) {
+  console.log(req);
+
   var newUser = new User({
-    username: req.body.username
+    username: req.body.username,
+    email:req.body.email
   });
   //register this user using passport
   User.register(newUser, req.body.password, function (err, user) {
@@ -182,7 +186,8 @@ app.get("/admin/register",function(req,res){
 
 app.post("/admin/register", function (req, res) {
     var newUser = new Admin({
-      username: req.body.username
+      username: req.body.username,
+      email:req.body.email
     });
     //register this user using passport
     Admin.register(newUser, req.body.password, function (err, user) {
