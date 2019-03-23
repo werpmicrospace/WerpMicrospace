@@ -41,7 +41,7 @@
     </div> -->
 <div class="container border border-warning" style="margin-top:2%;min-height: 90vh;">
   <h2 class="text-center">Team Tasks</h2>
-  <div class="container" style="padding-top:4%">
+  <div class="container" style="padding-top:3%; padding-left: 0; padding-right: 0;">
     <table class="table table-bordered">
       <thead class="thead-dark">
         <tr>
@@ -59,23 +59,23 @@
         <%for(var i=0;i<data.length;i++){%>
 
         <tr>
-          <td><a href="/admin/task/<%=data[i]._id%>"><%=data[i].taskname%></a></td>
-          <td><%=data[i].teamleadname%></td>
-          <td><%=data[i].description%></td>
-          <td><%=data[i].score%></td>
-          <td><%=data[i].remarks%></td>
-          <td><%=data[i].date%></td>
-          <td id="chgcolor" style="background-color:<%=data[i].color%>" ><%=data[i].status%></td>
+          <td style="width: 110px;"><a href="/admin/task/<%=data[i]._id%>"><%=data[i].taskname%></a></td>
+          <td style="width: 110px;"><%=data[i].teamleadname%></td>
+          <td style="width: 170px;"><%=data[i].description%></td>
+          <td style="width: 80px;"><%=data[i].score%></td>
+          <td style="width: 110px;"><%=data[i].remarks%></td>
+          <td style="width: 108px;"><%=data[i].date%></td>
+          <td style="width: 20px; background-color:<%=data[i].color%>; id="chgcolor""><%=data[i].status%></td>
           <td>
             <form action="/status/<%=data[i]._id%>" method="POST">
-              <input type="date" name="dateq">
-              <select name="status" id=""onclick="chgcolor(value)">
-                <option value="Not started" >Not started</option>
+              <input type="date" name="dateq" style="width:146px;">
+              <select name="status" id=""onclick="chgcolor(value)" style="height: 30px; width: 68px;">   
+                <option value="Not started" >Status</option>
                 <option value="Completed">Completed</option>
                 <option value="Blocked">Blocked due to reason</option>
                 <option value="Working on it">Working on it</option>
               </select>
-              <input type="submit">
+              <input type="submit" style="float: right; background-color: green; color: white; border-color: green;">
             </form>
           </td>
         </tr>
@@ -108,5 +108,6 @@
   }
   
 </script>
+
 <% include ../footer %>
 
