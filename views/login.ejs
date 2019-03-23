@@ -27,9 +27,12 @@
         <ul class="navbar-nav">
 
               <%  if(!currentUser){ %>
-            <li class="nav-item">
-                <a class="nav-link" href="/admin/login">Admin Login</a>
+              <li class="nav-item">
+                <a class="nav-link" href="/">Intern Login</a>
               </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="/admin/login">Admin Login</a>
+                </li>
                 <%  }else{  %>
                   <li class="nav-item">
                       <a class="nav-link" href="#"><%=currentUser.username%></a>
