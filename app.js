@@ -12,8 +12,8 @@ var AdminTask=require('./models/admin_task');
 var admin=require('./routes/admin');
 var path = require("path");
 
-//  mongoose.connect("mongodb+srv://werp:976jQJCeP4bU4ub2@werpindia-9qwtj.mongodb.net/microspace?retryWrites=true", {
-   mongoose.connect("mongodb://localhost:/werp_v1", {
+  mongoose.connect("mongodb+srv://werp:976jQJCeP4bU4ub2@werpindia-9qwtj.mongodb.net/microspace?retryWrites=true", {
+//   mongoose.connect("mongodb://localhost:/werp_v1", {
   useNewUrlParser: true
 });
 app.use(bodyParser.urlencoded({
