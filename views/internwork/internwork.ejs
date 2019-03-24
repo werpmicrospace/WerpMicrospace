@@ -1,46 +1,11 @@
 <% include ../header %>
-
-<!-- <div class="container">
-<table class="table">
-        <thead>
-          <tr>
-              <th scope="col">#</th>
-              <th scope="col">Task Name</th>
-              <th scope="col">Task Lead</th>
-              <th scope="col">Description</th>
-              <th scope="col">Date</th>
-              <th scope="col">Current Status</th>
-              <th scope="col">Edit Status</th>
-          </tr>
-        </thead>
-        <tbody>
-            <%for(var i=0;i<data.length;i++){%>
-                <tr>
-                    <th scope="row"><%=i+1%></th>
-                    <td><a href="/admin/task/<%=data[i]._id%>"><%=data[i].taskname%></a></td>
-                    <td><%=data[i].teamleadname%></td>
-                    <td><%=data[i].description%></td>
-                    <td><%=data[i].date%></td>
-                    <td><%=data[i].status%></td>
-                    <td>
-                      <form action="/status/<%=data[i]._id%>" method="POST">
-                        <select name="status" id="">
-                          <option value="On it">On it</option>
-                          <option value="50% complete">50% complete</option>
-                          <option value="75% complete">75% complete</option>
-                          <option value="Done">Done</option>
-                        </select>
-                        <input type="submit" >
-                      </form>
-                    </td>
-                  </tr>
-            <%}%> 
-        </tbody>
-      </table>
-
-    </div> -->
-<div class="container border border-warning" style="margin-top:2%;min-height: 90vh;">
-  <h2 class="text-center">Team Tasks</h2>
+<style>
+  body{
+    font-weight: 700;
+  }
+</style>
+<div class="container" style="margin-top:2%;min-height: 90vh;">
+  <h2 class="" style="font-weight:700;">Team Tasks</h2>
   <div class="container" style="padding-top:3%; padding-left: 0; padding-right: 0;">
     <table class="table table-bordered">
       <thead class="thead-dark">
@@ -53,31 +18,37 @@
           <th scope="col">Date</th>
           <th scope="col">Current Status</th>
           <th scope="col">Edit Status / Date</th>
+          <th>Submit</th>
         </tr>
       </thead>
       <tbody>
         <%for(var i=0;i<data.length;i++){%>
 
         <tr>
-          <td style="width: 110px;"><a href="/admin/task/<%=data[i]._id%>"><%=data[i].taskname%></a></td>
-          <td style="width: 110px;"><%=data[i].teamleadname%></td>
-          <td style="width: 170px;"><%=data[i].description%></td>
-          <td style="width: 80px;"><%=data[i].score%></td>
-          <td style="width: 110px;"><%=data[i].remarks%></td>
-          <td style="width: 108px;"><%=data[i].date%></td>
-          <td style="width: 20px; background-color:<%=data[i].color%>; id="chgcolor""><%=data[i].status%></td>
-          <td>
-            <form action="/status/<%=data[i]._id%>" method="POST">
-              <input type="date" name="dateq" style="width:146px;">
-              <select name="status" id=""onclick="chgcolor(value)" style="height: 30px; width: 68px;">   
-                <option value="Not started" >Status</option>
-                <option value="Completed">Completed</option>
-                <option value="Blocked">Blocked due to reason</option>
-                <option value="Working on it">Working on it</option>
-              </select>
-              <input type="submit" style="float: right; background-color: green; color: white; border-color: green;">
-            </form>
-          </td>
+          <td style=""><a href="/admin/task/<%=data[i]._id%>"><%=data[i].taskname%></a></td>
+          <td style="width: 50%"><%=data[i].teamleadname%></td>
+          <td style=""><%=data[i].description%></td>
+          <td style=""><%=data[i].score%></td>
+          <td style=""><%=data[i].remarks%></td>
+          <td style="width: 100%;"><%=data[i].date%></td>
+          <td style="width: 100%; background-color: <%=data[i].color%>" id="chgcolor"><%=data[i].status%></td>
+          <form action="/status/<%=data[i]._id%>" method="POST">
+            <td>
+                <div class="input-group date mb-1" data-provide="datepicker">
+                  <input type="date" name="dateq" class="form-control">
+                </div>
+                <select name="status" style="border: 1px solid #ccc; background: aliceblue; padding: 4px; border-radius: 4px;">   
+                  <option value="Not started">Not started</option>
+                  <option value="Completed">Completed</option>
+                  <option value="Blocked">Blocked due to reason</option>
+                  <option value="Working on it">Working on it</option>
+                </select>
+            </td>
+            <td>
+                <input type="submit" class="btn btn-success">
+            </td>
+          </form>
+          
         </tr>
         <%}%> 
 
@@ -89,23 +60,23 @@
   
  
   
-  function chgcolor(data){
-    if(data == "Not started"){
-    document.getElementById('chgcolor').style.backgroundColor = "Orange";
+  // function chgcolor(data){
+  //   if(data == "Not started"){
+  //   document.getElementById('chgcolor').style.backgroundColor = "Orange";
     
-    }
-    if (data == "Completed") {
-      document.getElementById('chgcolor').style.backgroundColor = "Green";
-    }
-    if (data == "Blocked") {
-      document.getElementById('chgcolor').style.backgroundColor = "Red";
-    }
-    if (data == "Working on it") {
-      document.getElementById('chgcolor').style.backgroundColor = "Yellow";
-    }
+  //   }
+  //   if (data == "Completed") {
+  //     document.getElementById('chgcolor').style.backgroundColor = "Green";
+  //   }
+  //   if (data == "Blocked") {
+  //     document.getElementById('chgcolor').style.backgroundColor = "Red";
+  //   }
+  //   if (data == "Working on it") {
+  //     document.getElementById('chgcolor').style.backgroundColor = "Yellow";
+  //   }
   
     
-  }
+  // }
   
 </script>
 
