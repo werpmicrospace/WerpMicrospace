@@ -1,6 +1,6 @@
 <% include ../header %>
 <style>
-  body{
+  body {
     font-weight: 700;
   }
 </style>
@@ -34,21 +34,22 @@
           <td style="width: 100%; background-color: <%=data[i].color%>" id="chgcolor"><%=data[i].status%></td>
           <form action="/status/<%=data[i]._id%>" method="POST">
             <td>
-                <div class="input-group date mb-1" data-provide="datepicker">
-                  <input type="date" name="dateq" class="form-control">
-                </div>
-                <select name="status" style="border: 1px solid #ccc; background: aliceblue; padding: 4px; border-radius: 4px;">   
-                  <option value="Not started">Not started</option>
-                  <option value="Completed">Completed</option>
-                  <option value="Blocked">Blocked due to reason</option>
-                  <option value="Working on it">Working on it</option>
-                </select>
+              <div class="input-group date mb-1" data-provide="datepicker">
+                <input type="date" name="dateq" class="form-control">
+              </div>
+              <select name="status"
+                style="border: 1px solid #ccc; background: aliceblue; padding: 4px; border-radius: 4px;">
+                <option value="Not started">Not started</option>
+                <option value="Completed">Completed</option>
+                <option value="Blocked">Blocked due to reason</option>
+                <option value="Working on it">Working on it</option>
+              </select>
             </td>
             <td>
-                <input type="submit" class="btn btn-success">
+              <input type="submit" class="btn btn-success">
             </td>
           </form>
-          
+
         </tr>
         <%}%> 
 
@@ -56,28 +57,4 @@
     </table>
   </div>
 </div>
-<script>
-  
- 
-  
-  // function chgcolor(data){
-  //   if(data == "Not started"){
-  //   document.getElementById('chgcolor').style.backgroundColor = "Orange";
-    
-  //   }
-  //   if (data == "Completed") {
-  //     document.getElementById('chgcolor').style.backgroundColor = "Green";
-  //   }
-  //   if (data == "Blocked") {
-  //     document.getElementById('chgcolor').style.backgroundColor = "Red";
-  //   }
-  //   if (data == "Working on it") {
-  //     document.getElementById('chgcolor').style.backgroundColor = "Yellow";
-  //   }
-  
-    
-  // }
-  
-</script>
 <% include ../footer %>
-
