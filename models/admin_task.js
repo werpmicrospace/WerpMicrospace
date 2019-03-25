@@ -9,9 +9,6 @@ var adminTaskSchema = new schema({
     description: {
         type: String,
     },
-    details: {
-        type: String,
-    },
     teamleadname: {
         type: String,
     },
