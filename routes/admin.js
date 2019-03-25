@@ -11,7 +11,6 @@ var Comment = require('../models/comment');
 
 router.get("/admin/adiiufbibfyyagygdsigf78767iuyfuiauiufu776f9789ds7fhhuhsh", isLoggedIn, function (req, res) {
     User.find({}).then(data => {
-        // console.log(data);
         res.render("admintasks/admin_task.ejs", {
             data: data
         });
@@ -20,8 +19,6 @@ router.get("/admin/adiiufbibfyyagygdsigf78767iuyfuiauiufu776f9789ds7fhhuhsh", is
 
 
 router.get('/intern/dashboard', isLoggedIn, (req, res) => {
-    console.log(req.user);
-
     AdminTask.find({
         userid: req.user._id
     }).then(data => {
@@ -37,12 +34,6 @@ router.post('/taskassigned', isLoggedIn, function (req, res) {
     var myDate = new Date(new Date().getTime() + (14 * 24 * 60 * 60 * 1000));
     var name = req.body.userid.slice(25);
     var idd = req.body.userid.slice(0, 24);
-    console.log(req.body.userid);
-
-    console.log(name);
-    console.log(idd);
-
-
     var formateddate = myDate.getDate() + "-" + (myDate.getMonth() + 1) + "-" + myDate.getFullYear();
 
     var newTask = {
@@ -58,13 +49,11 @@ router.post('/taskassigned', isLoggedIn, function (req, res) {
         color: "Orange",
         date: formateddate
     }
-    console.log("saving");
 
     AdminTask.create(newTask, (err, data) => {
         if (err) {
             console.log(err);
         } else {
-            console.log("taskassigned");
         }
         res.redirect('/showtasks');
 
@@ -72,11 +61,9 @@ router.post('/taskassigned', isLoggedIn, function (req, res) {
 });
 //shows admin tasks which admin created
 router.get("/showtasks", isLoggedIn, (req, res) => {
-    // console.log(req);
     AdminTask.find({
         id: req.user._id
     }).then(data => {
-        // console.log(data.length);
         res.render("admintasks/showadmintasks.ejs", {
             data: data
         });
@@ -92,7 +79,6 @@ router.get('/editadmintasks/:id', isLoggedIn, (req, res) => {
         if (data.id != req.user.id) {
             res.redirect('/showtasks');
         } else {
-            // console.log(data);
 
             res.render('admintasks/editadmintasks.ejs', {
                 data: data
@@ -102,7 +88,6 @@ router.get('/editadmintasks/:id', isLoggedIn, (req, res) => {
 });
 
 router.post('/editadmintasks/:id', isLoggedIn, (req, res) => {
-    // console.log(req.body);
     var editTask = {
         taskname: req.body.taskname,
         description: req.body.description,
@@ -110,7 +95,6 @@ router.post('/editadmintasks/:id', isLoggedIn, (req, res) => {
         score: req.body.score,
         remarks: req.body.remarks
     }
-    // console.log(editTask)
     AdminTask.updateOne({
         _id: req.params.id
     }, editTask, (err, updated) => {
@@ -136,7 +120,6 @@ router.get("/admin/task/:id", isLoggedIn, (req, res) => {
             res.render('admintasks/task_details.ejs', {
                 task: task
             });
-            console.log(task);
 
         }
     })
@@ -157,7 +140,6 @@ router.post("/admin/task/:id/comment", isLoggedIn, function (req, res) {
     AdminTask.findById(req.params.id, function (err, task) {
         if (err) console.log(err);
         else {
-            console.log(req.body.comment);
             var newComment = {
                 text: req.body.comment,
                 author: req.user.username,

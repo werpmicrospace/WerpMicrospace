@@ -130,7 +130,6 @@ app.post("/interns/new", function (req, res) {
     if (err) {
       consolelog(err);
     } else {
-      console.log("new user added");
     }
   })
   res.redirect("/");
@@ -155,7 +154,6 @@ app.post("/admins/new", function (req, res) {
     if (err) {
       consolelog(err);
     } else {
-      console.log("new admin added");
     }
   })
   res.redirect("/");
