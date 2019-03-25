@@ -50,7 +50,6 @@ router.post('/taskassigned', isLoggedIn, function (req, res) {
     var newTask = {
         taskname: req.body.taskname,
         description: req.body.description,
-        details: req.body.details,
         teamleadname: req.body.teamleadname,
         id: req.user._id,
         userid: idd,
