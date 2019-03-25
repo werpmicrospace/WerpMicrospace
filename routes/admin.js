@@ -45,12 +45,6 @@ router.post('/taskassigned', isLoggedIn, function (req, res) {
     var myDate = new Date(new Date().getTime() + (14 * 24 * 60 * 60 * 1000));
     var name = req.body.userid.slice(25);
     var idd = req.body.userid.slice(0, 24);
-    console.log(req.body.userid);
-    
-    console.log(name);
-    console.log(idd);
-    
-    
     var formateddate = myDate.getDate() + "-" + (myDate.getMonth() + 1) + "-" + myDate.getFullYear();
 
     var newTask = {
