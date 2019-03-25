@@ -1,84 +1,32 @@
 <% include ../header %>
-<style>
-    body {
-        font: 400 15px Lato, sans-serif;
-        line-height: 1.8;
-        color: #818181;
-        background-color: #F1F1F2;
-    }
-
-    .well {
-
-        background-color: white;
-        padding: 10px 25px 20px 25px;
-        font-family: Montserrat, sans-serif;
-    }
-
-    .page-header {
-
-        background-color: #d5e2ef;
-        padding: 10px 25px 20px 25px;
-        font-family: Montserrat, sans-serif;
-    }
-
-    .panel {
-        border: 2px solid #96c7e8;
-        border-radius: 0 !important;
-        transition: box-shadow 0.5s;
-    }
-
-    h3 {
-        font-size: 19px;
-        line-height: 1.375em;
-        color: grey;
-        font-weight: 400;
-        margin-bottom: 30px;
-    }
-
-    h2 {
-        font-size: 24px;
-
-        color: #303030;
-        font-weight: 600;
-        margin-bottom: 30px;
-    }
-
-    a.colour {
-        color: #514b48;
-        font-weight: bold;
-    }
-</style>
-
-
-<div class="container well" >
-    <h2><b>Task : <%= task.taskname %></b></h2>
-    <div class="page-header">
-        <blockquote class="blockquote">
-            <h3 style="color: #959ea5;"><%= task.description %></h3>
-        </blockquote>
-    </div>
-    <h5>Comments:</h5>
-    <% task.comments.forEach(function(comm){ %>
-    <div class="card">
-        <div class="row">
-            <div class="col-md-10">
-                <h5><%= comm.author %>:</h5>
-                <p><%= comm.text%></p>
+<br>
+<br>
+<div class="container card" style="padding:2em">
+    <h2><b>Task</b> : <%= task.taskname %></h2>
+    <br>
+    Details:-
+    <pre><%= task.description %></pre>
+    <br>
+    Assigned By: <%= task.teamleadname %>
+    <div class="card" style="padding:2em">
+        <h5>Comments:</h5>
+        <% task.comments.forEach(function(comm){ %>
+        <div>
+            <p style="font-size:0.8em"><%= comm.author %>:<span style="font-size:1rem"><%= comm.text%></span></p>
+        </div>
+        <% }) %>
+        <p>Enter your comment</p>
+        <form class="form-inline" action="/admin/task/<%=task._id%>/comment" method="POST">
+            <div class="form-row">
+                <div class="col">
+                    <input type="text" name="comment">
+                </div>
+                <div class="col">
+                    <input type="submit">
+                </div>
             </div>
-            <div class="col-md-2">
-            </div>
-        </div>
+        </form>
     </div>
-    <% }) %>
-    <h4>Enter your comment</h4>
-    <form action="/admin/task/<%=task._id%>/comment" method="POST">
-        <div class="form-group">
-            <input type="text" name="comment" style="width:80%;">
-        </div>
-        <div class="form-group">
-            <input type="submit">
-        </div>
-    </form>
 </div>
 
 <% include ../footer %>

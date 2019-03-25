@@ -28,15 +28,8 @@
           <%for(var i=0;i<data.length;i++){ %>
           <option value="<%=data[i]._id%>,<%=data[i].username%>"><%=data[i].username%></option>
           <%}%>
-            </select>
-
-
-            </div>
-            <div class="form-group">
-                <label for="exampleInputEmail1">Team Lead Name</label>
-                <input type="teamleadname" class="form-control" id="exampleInputEmail1" name="teamleadname" value="" aria-describedby="emailHelp" required>
-              </div>
-           
+        </select>
+      </div>
             <button type="submit" class="btn btn-primary">Submit</button>
             <a  class="btn btn-primary" href="/showtasks">Show Tasks</a>
           </form>

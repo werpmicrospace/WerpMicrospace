@@ -1,44 +1,40 @@
 <% include ../header %>
-<div class="container border border-warning" style="margin-top:2%;min-height: 85vh;">
-  <h2 class="text-center" style="margin-top:2%">Team Tasks</h2>
-  <div class="container" style="padding-top:4%">
-    <table class="table table-bordered">
-      <thead class="thead-dark">
-        <tr>
-          <th scope="col">Task Name</th>
-          <th scope="col">Description</th>
-          <th scope="col">Intern</th>
-          <th scope="col">Date</th>
-          <th scope="col">Status</th>
-          <th scope="col">Score</th>
-          <th scope="col">Remarks</th>
-          <th scope="col">Edit</th>
-          <th scope="col">Delete</th>
-        </tr>
-      </thead>
-      <tbody>
-        <%for(var i=0;i<data.length;i++){%>
-
-        <tr>
-          <td style="width: 110px;"><a href="/admin/task/<%=data[i]._id%>"><%=data[i].taskname%></a></td>
-          <td style="width: 220px;"><%=data[i].description%></td>
-          <td style="width: 110px;"><%=data[i].username%></td>
-          <td style="width: 90px;"><%=data[i].date%></td>
-          <td style="background-color:<%=data[i].color%>; width: 110px;"><%=data[i].status%></td>
-          <td style="width: 80px;"><%=data[i].score%></td>
-          <td style="width: 150px;"><%=data[i].remarks%></td>
-          <td style="width: 70px;"><a href="/editadmintasks/<%=data[i]._id%>"><button class="btn btn-info">Edit</button>
-          </td>
-          <td style="width: 90px;"><a href="/deleteadmintask/<%=data[i]._id%>"><button
-                class="btn btn-warning">Delete</button></td>
-        </tr>
-        <%}%> 
+<h2 class="text-center" style="margin-top:2%">Team Tasks</h2>
+<div class="container" style="padding-top:4%">
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Task Name</th>
+        <th scope="col">Description</th>
+        <th scope="col">Intern</th>
+        <th scope="col">Date</th>
+        <th scope="col">Status</th>
+        <th scope="col">Score</th>
+        <th scope="col">Remarks</th>
+        <th scope="col">Edit</th>
+        <th scope="col">Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%for(var i=0;i<data.length;i++){%>
+      <tr>
+        <td style=""><a href="/admin/task/<%=data[i]._id%>"><%=data[i].taskname%></a></td>
+        <td style=""><%=data[i].description.substring(0,20)%></td>
+        <td style=""><%=data[i].username%></td>
+        <td style=""><%=data[i].date%></td>
+        <td style="background-color:<%=data[i].color%>;"><%=data[i].status%></td>
+        <td style=""><%=data[i].score%></td>
+        <td style=""><%=data[i].remarks%></td>
+        <td style=""><a href="/editadmintasks/<%=data[i]._id%>"><button class="btn btn-info">Edit</button>
+        </td>
+        <td style=""><a href="/deleteadmintask/<%=data[i]._id%>"><button class="btn btn-warning">Delete</button></td>
+      </tr>
+      <%}%> 
 
       </tbody>
     </table>
             <a href="/admin/adiiufbibfyyagygdsigf78767iuyfuiauiufu776f9789ds7fhhuhsh" class="btn btn-success">New Task</a>
 
   </div>
-</div>
 
 <% include ../footer %>
