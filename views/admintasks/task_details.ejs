@@ -52,13 +52,11 @@
 
 <div class="container">
     <h2><b>Task : <%= task.taskname %></b></h2>
-
     <div class="page-header">
         <blockquote class="blockquote">
-            <h3 style="color: #959ea5;"><%= task.details %></h3>
+            <h3 style="color: #959ea5;"><%= task.description %></h3>
         </blockquote>
     </div>
-
     <div class="well">
         <a href="/admin/task/<%= task._id %>/comment" style="text-align:right;">Add a comment</a>
         <h5>Comments:</h5>
