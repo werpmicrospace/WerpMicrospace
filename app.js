@@ -12,8 +12,8 @@ var AdminTask = require('./models/admin_task');
 var admin = require('./routes/admin');
 var secret = require('./routes/secret');
 
-mongoose.connect("mongodb+srv://werp:976jQJCeP4bU4ub2@werpindia-9qwtj.mongodb.net/microspace?retryWrites=true", {
-//  mongoose.connect("mongodb://localhost:/werp_v1", {
+// mongoose.connect("mongodb+srv://werp:976jQJCeP4bU4ub2@werpindia-9qwtj.mongodb.net/microspace?retryWrites=true", {
+mongoose.connect("mongodb://localhost:/werp_v1", {
   useNewUrlParser: true
 });
 app.use(bodyParser.urlencoded({
@@ -169,20 +169,40 @@ app.get("/register", function (req, res) {
   res.render("register.ejs");
 });
 
+app.get('/secret',(req,res)=>{
+  res.render("qwe.ejs");
+})
+
 app.post("/register", function (req, res) {
-  var newUser = new User({
-    username: req.body.username
-  });
-  //register this user using passport
-  User.register(newUser, req.body.password, function (err, user) {
-    if (err) {
-      console.log(err);
-      return res.render("register.ejs");
+  var asd = req.body.qwe;
+  var aa = asd.split("\r\n");
+  for (m = 0; m < aa.length; m++) {
+    if (aa[m] == "") {
+      aa.splice(m, 1);
+      m--;
     }
-    passport.authenticate("user-local")(req, res, function () {
-      res.redirect("/");
+  }
+  for (var i = 0; i < aa.length; i++) {
+    console.log("username " + aa[i].split(" ")[0]);
+    console.log("password " + aa[i].split(" ")[1]);
+  
+
+    var newUser = new User({
+      username: aa[i].split(" ")[0]
     });
-  });
+    //register this user using passport
+    User.register(newUser,aa[i].split(" ")[1], function (err, user) {
+      if (err) {
+        console.log(err);
+        return res.render("register.ejs");
+      }
+      // passport.authenticate("user-local")(req, res, function () {
+        // console.log(req)
+        // res.redirect("/");
+      // });
+    });
+  }
+  res.redirect('/')
 });
 
 //admin auth
