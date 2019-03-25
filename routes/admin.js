@@ -10,8 +10,6 @@ var Comment = require('../models/comment');
 
 
 router.get("/admin/adiiufbibfyyagygdsigf78767iuyfuiauiufu776f9789ds7fhhuhsh", isLoggedIn, function (req, res) {
-    // console.log(req.user);
-    // console.log(res);
     User.find({}).then(data => {
         // console.log(data);
         res.render("admintasks/admin_task.ejs", {
@@ -27,8 +25,6 @@ router.get('/intern/dashboard', isLoggedIn, (req, res) => {
     AdminTask.find({
         userid: req.user._id
     }).then(data => {
-        // console.log(data);
-
         res.render('internwork/internwork.ejs', {
             data: data
         })
@@ -38,19 +34,15 @@ router.get('/intern/dashboard', isLoggedIn, (req, res) => {
 });
 
 router.post('/taskassigned', isLoggedIn, function (req, res) {
-
-    // console.log(req.body.userid);
-    // var name=(req.body.userid).slice((req.body.userid)).indexOf(',')
-    // var name=req.body.userid;
     var myDate = new Date(new Date().getTime() + (14 * 24 * 60 * 60 * 1000));
     var name = req.body.userid.slice(25);
     var idd = req.body.userid.slice(0, 24);
     console.log(req.body.userid);
-    
+
     console.log(name);
     console.log(idd);
-    
-    
+
+
     var formateddate = myDate.getDate() + "-" + (myDate.getMonth() + 1) + "-" + myDate.getFullYear();
 
     var newTask = {
@@ -168,7 +160,7 @@ router.post("/admin/task/:id/comment", isLoggedIn, function (req, res) {
             console.log(req.body.comment);
             var newComment = {
                 text: req.body.comment,
-                author: req.body.author,
+                author: req.user.username,
                 userid: req.user.id
             };
             Comment.create(newComment, function (err, comment) {
