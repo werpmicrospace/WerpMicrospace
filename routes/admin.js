@@ -44,7 +44,13 @@ router.post('/taskassigned', isLoggedIn, function (req, res) {
     // var name=req.body.userid;
     var myDate = new Date(new Date().getTime() + (14 * 24 * 60 * 60 * 1000));
     var name = req.body.userid.slice(25);
-    var idd = req.body.userid.slice(0, 24)
+    var idd = req.body.userid.slice(0, 24);
+    console.log(req.body.userid);
+    
+    console.log(name);
+    console.log(idd);
+    
+    
     var formateddate = myDate.getDate() + "-" + (myDate.getMonth() + 1) + "-" + myDate.getFullYear();
 
     var newTask = {
@@ -53,8 +59,8 @@ router.post('/taskassigned', isLoggedIn, function (req, res) {
         details: req.body.details,
         teamleadname: req.body.teamleadname,
         id: req.user._id,
-        userid: req.body.userid,
-        username: req.user.username,
+        userid: idd,
+        username: name,
         score: req.body.score,
         remarks: req.body.remarks,
         status: "Not started",
