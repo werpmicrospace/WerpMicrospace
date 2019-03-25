@@ -4,9 +4,10 @@
 <div class="container card" style="padding:2em">
     <h2><b>Task</b> : <%= task.taskname %></h2>
     <br>
-    <blockquote>
-        <pre><%= task.description %></pre>
-    </blockquote>
+    Details:-
+    <pre><%= task.description %></pre>
+    <br>
+    Assigned By: <%= task.teamleadname %>
     <div class="card" style="padding:2em">
         <h5>Comments:</h5>
         <% task.comments.forEach(function(comm){ %>
