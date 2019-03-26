@@ -181,15 +181,15 @@ app.post("/register", function (req, res) {
     }
   }
   for (var i = 0; i < aa.length; i++) {
-    console.log("username " + aa[i].split("        ")[0]);
-    console.log("password " + aa[i].split("        ")[1]);
+    console.log("username " + aa[i].split("\t")[0]);
+    console.log("password " + aa[i].split("\t")[1]);
   
 
     var newUser = new User({
-      username: aa[i].split("        ")[0]
+      username: aa[i].split("\t")[0]
     });
     //register this user using passport
-    User.register(newUser,aa[i].split("        ")[1], function (err, user) {
+    User.register(newUser,aa[i].split("\t")[1], function (err, user) {
       if (err) {
         console.log(err);
         return res.render("register.ejs");
