@@ -13,7 +13,7 @@ var admin = require('./routes/admin');
 var secret = require('./routes/secret');
 
 mongoose.connect("mongodb+srv://werp:976jQJCeP4bU4ub2@werpindia-9qwtj.mongodb.net/microspace?retryWrites=true", {
-//mongoose.connect("mongodb://localhost:/werp_v1", {
+// mongoose.connect("mongodb://localhost:/werp_v1", {
   useNewUrlParser: true
 });
 app.use(bodyParser.urlencoded({
@@ -181,15 +181,15 @@ app.post("/register", function (req, res) {
     }
   }
   for (var i = 0; i < aa.length; i++) {
-    console.log("username " + aa[i].split(" ")[0]);
-    console.log("password " + aa[i].split(" ")[1]);
+    console.log("username " + aa[i].split("        ")[0]);
+    console.log("password " + aa[i].split("        ")[1]);
   
 
     var newUser = new User({
-      username: aa[i].split(" ")[0]
+      username: aa[i].split("        ")[0]
     });
     //register this user using passport
-    User.register(newUser,aa[i].split(" ")[1], function (err, user) {
+    User.register(newUser,aa[i].split("        ")[1], function (err, user) {
       if (err) {
         console.log(err);
         return res.render("register.ejs");
